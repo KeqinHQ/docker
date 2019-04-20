@@ -13,7 +13,6 @@ RUN apk --update add \
     subversion \
     freetype-dev \
     libjpeg-turbo-dev \
-    libmcrypt-dev \
     libpng-dev \
     libtool \
     libbz2 \
@@ -37,8 +36,6 @@ RUN apk --update add \
     docker-php-ext-enable imagick && \
     docker-php-ext-install gd && \
     docker-php-ext-enable opcache && \
-    pecl install mcrypt-1.0.1 && \
-    docker-php-ext-enable mcrypt && \
     apk del build-base \
     linux-headers \
     libaio-dev \
