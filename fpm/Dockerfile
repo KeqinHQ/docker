@@ -17,6 +17,8 @@ RUN apk --update add \
     libpng-dev \
     libtool \
     libbz2 \
+    libzip \
+    libzip-dev \
     bzip2-dev \
     libstdc++ \
     libxslt-dev \
