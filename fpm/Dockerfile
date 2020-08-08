@@ -24,12 +24,13 @@ RUN apk --update add \
     openldap-dev \
     imagemagick-dev \
     hiredis-dev \
+    oniguruma-dev \
     make \
     unzip \
     ffmpeg \
     wget && \
     docker-php-ext-install bcmath zip bz2 pdo_mysql mysqli simplexml opcache sockets mbstring pcntl xsl pspell && \
-    docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ && \
+    docker-php-ext-configure gd --with-freetype --with-jpeg && \
     pecl install redis && \
     docker-php-ext-enable redis && \
     pecl install xdebug && \
