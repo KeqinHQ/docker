@@ -1,9 +1,16 @@
-# 克勤 PHP 镜像
+# 克勤 Docker 镜像
 
-![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/keqin/php)
-克勤内部 PHP 镜像，附带常用扩展
+克勤内部 Docker 镜像，在官方镜像基础上，根据项目实际情况定制安装了一部分功能。
 
-## 用法
+## PHP
 
-`image: keqin/php`
+### 用法示例
 
+```yaml
+php:
+    image: keqin/php:7
+```
+
+### 版本
+
+[`7,7-fpm,7.4,7.4-fpm`](php/7.4/fpm/Dockerfile) [![PHP 7 Build](https://github.com/KeqinHQ/docker/actions/workflows/php7.yml/badge.svg)](https://github.com/KeqinHQ/docker/actions/workflows/php7.yml)
