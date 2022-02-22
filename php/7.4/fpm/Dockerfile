@@ -1,4 +1,4 @@
-FROM php:7-fpm-alpine
+FROM php:7.4-fpm-alpine
 
 # Packages
 RUN apk --update add \
@@ -28,7 +28,8 @@ RUN apk --update add \
     make \
     unzip \
     ffmpeg \
-    wget && \
+    wget \
+    fcgi && \
     docker-php-ext-install bcmath zip bz2 pdo_mysql mysqli simplexml opcache sockets mbstring pcntl xsl pspell && \
     docker-php-ext-configure gd --with-freetype --with-jpeg && \
     pecl install redis && \
@@ -42,14 +43,20 @@ RUN apk --update add \
     linux-headers \
     libaio-dev \
     && rm -rf /var/cache/apk/*
+# 这里的 githubusercontents.com 多了个 s，是镜像加速站
+ADD https://raw.githubusercontents.com/renatomefi/php-fpm-healthcheck/master/php-fpm-healthcheck /usr/local/bin/php-fpm-healthcheck 
+RUN chmod +x /usr/local/bin/php-fpm-healthcheck
 
-
+COPY healthy.conf /usr/local/etc/php-fpm.d/healthy.conf
 
 # Register the COMPOSER_HOME environment variable
 ENV COMPOSER_HOME /composer
 
 # Add global binary directory to PATH and make sure to re-export it
 ENV PATH /composer/vendor/bin:$PATH
+ENV FCGI_CONNECT 127.0.0.1:19000
+HEALTHCHECK --interval=5s --timeout=1s \
+    CMD php-fpm-healthcheck || exit 1
 
 # Allow Composer to be run as root
 ENV COMPOSER_ALLOW_SUPERUSER 1
