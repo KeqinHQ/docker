@@ -6,6 +6,8 @@ name: Build PHP 8 Docker Image
 # documentation.
 
 on:
+  schedule:
+    - cron: '24 11 * * *'
   push:
     branches: [ master ]
     paths:
