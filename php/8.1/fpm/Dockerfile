@@ -43,8 +43,7 @@ RUN apk --update add \
     linux-headers \
     libaio-dev \
     && rm -rf /var/cache/apk/*
-# 这里的 githubusercontents.com 多了个 s，是镜像加速站
-ADD https://raw.githubusercontents.com/renatomefi/php-fpm-healthcheck/master/php-fpm-healthcheck /usr/local/bin/php-fpm-healthcheck 
+ADD https://raw.githubusercontent.com/renatomefi/php-fpm-healthcheck/master/php-fpm-healthcheck /usr/local/bin/php-fpm-healthcheck 
 RUN chmod +x /usr/local/bin/php-fpm-healthcheck
 
 COPY healthy.conf /usr/local/etc/php-fpm.d/healthy.conf
