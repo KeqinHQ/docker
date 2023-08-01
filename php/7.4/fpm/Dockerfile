@@ -34,7 +34,8 @@ RUN apk --update add \
     docker-php-ext-configure gd --with-freetype --with-jpeg && \
     pecl install redis && \
     docker-php-ext-enable redis && \
-    pecl install xdebug && \
+    # the new xdebug release cloud no longer support the php under 8
+    pecl install xdebug-3.1.6  && \
     pecl install imagick && \
     docker-php-ext-enable imagick && \
     docker-php-ext-install gd && \
